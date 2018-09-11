@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.cagmeini.serviciosya.dao.IOccupationDao;
 import com.cagmeini.serviciosya.dao.OccupationDaoMemory;
+import com.cagmeini.serviciosya.dao.OccupationJdbcDao;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,6 +20,8 @@ public class OccupationServiceTest {
     private OccupationService occupationService = new OccupationService ();
 
     private IOccupationDao occupationDao = new OccupationDaoMemory ();
+
+    private IOccupationDao occupationJdbcDao = new OccupationJdbcDao();
 
 
     @Test
@@ -114,4 +117,28 @@ public class OccupationServiceTest {
 
         Assert.assertTrue(init.size()-1 == end.size());
     }
+
+    @Test
+    public void testFindAllOccupation () {
+
+        this.occupationService.setOccupationDao (this.occupationJdbcDao);
+
+        List<Occupation> list = this.occupationService.findAllOccupations();
+
+        Assert.assertFalse ("Failed findAllOccupation..", list.isEmpty ());
+
+        //Assert.assertTrue("Failed..", list.size()==1);
+    }
+
+    /*@Test
+    public void testAddOccupation () {
+
+        this.occupationService.setOccupationDao (this.occupationJdbcDao);
+
+        Occupation o = new Occupation ("1", "Catador de Ron", "Beber alcohol...");
+
+        this.occupationService.addOccupation();
+
+        Assert.assertTrue();
+    }*/
 }
