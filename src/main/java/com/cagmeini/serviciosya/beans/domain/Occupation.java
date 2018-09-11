@@ -7,7 +7,7 @@ package com.cagmeini.serviciosya.beans.domain;
  *  <p>The class <code>com.cagmeini.serviciosya.beans.domain.Occupation<code/>
  *  is a domain object for management the occupations information.
  *
- *  @author Raul Pena (raul.pena@gmail.com)
+ *  @author Walter Leguiza (wal.leguiza@gmail.com)
  *  @version 1.0.0
  *  @since 1.8
  * */
