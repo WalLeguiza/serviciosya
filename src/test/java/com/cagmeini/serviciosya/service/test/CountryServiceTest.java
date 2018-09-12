@@ -95,7 +95,7 @@ public class CountryServiceTest {
             logger.debug ("Inserting new country.");
             Country country = new Country ();
             country.setId(1);
-            country.setName ("Uruguay");
+            country.setName ("Argentina");
 
             dao.update (country);
 

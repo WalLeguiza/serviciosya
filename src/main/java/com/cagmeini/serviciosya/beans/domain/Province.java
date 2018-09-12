@@ -10,8 +10,8 @@ public class Province {
     // Province name
     private String name;
 
-    // Province country_id
-    private int country_id;
+    // Province countryId
+    private int countryId;
 
     // Constructor declarations.
     /**
@@ -21,5 +21,29 @@ public class Province {
     public Province() {
 
         super();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 }
