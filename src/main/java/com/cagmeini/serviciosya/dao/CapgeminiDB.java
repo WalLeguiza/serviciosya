@@ -1,26 +1,46 @@
 package com.cagmeini.serviciosya.dao;
 
-import org.apache.commons.dbcp2.BasicDataSource;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import org.apache.commons.dbcp2.BasicDataSource;
 
 public class CapgeminiDB {
 
-    private Connection cnn;
-
-    private static final BasicDataSource datasource = new BasicDataSource();
+    private static final BasicDataSource dataSource;
 
     static {
 
+        dataSource = new BasicDataSource ();
+
+        try {
+
+            Properties pop = new Properties();
+            pop.load(CapgeminiDB.class.getClassLoader().
+                    getResourceAsStream ("jdbc.properties"));
+
+
+            dataSource.setUrl(pop.getProperty ("jdbc.url"));
+            dataSource.setUsername (pop.getProperty ("jdbc.user"));
+            dataSource.setPassword (pop.getProperty ("jdbc.password"));
+            dataSource.setDriverClassName(pop.getProperty ("jdbc.driver"));
+            dataSource.setMinIdle (Integer.parseInt(pop.getProperty ("jdbc.pool.min")));
+            dataSource.setMaxIdle (Integer.parseInt(pop.getProperty ("jdbc.pool.max")));
+
+        } catch (Exception e) {
+
+            throw new DaoException(e);
+        }
     }
 
-    public static final Connection getConnection () {
+    private CapgeminiDB () {
 
-        return null;
+        super ();
     }
 
-    public static final void closeConnection () throws Exception {
+    protected static Connection getConnection () throws SQLException {
 
+        return dataSource.getConnection();
     }
 }

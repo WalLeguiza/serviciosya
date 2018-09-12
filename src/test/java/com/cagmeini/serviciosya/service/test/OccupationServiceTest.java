@@ -1,144 +1,128 @@
 
 package com.cagmeini.serviciosya.service.test;
 
+import org.apache.log4j.Logger;
 
-import java.util.List;
-
-import com.cagmeini.serviciosya.dao.IOccupationDao;
-import com.cagmeini.serviciosya.dao.OccupationDaoMemory;
-import com.cagmeini.serviciosya.dao.OccupationJdbcDao;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.cagmeini.serviciosya.beans.domain.Occupation;
-import com.cagmeini.serviciosya.service.OccupationService;
+import com.cagmeini.serviciosya.dao.IOccupationDao;
+import com.cagmeini.serviciosya.dao.OccupationDaoJDBC;
 
+import java.util.List;
 
 public class OccupationServiceTest {
 
-
-    private OccupationService occupationService = new OccupationService ();
-
-    private IOccupationDao occupationDao = new OccupationDaoMemory ();
-
-    private IOccupationDao occupationJdbcDao = new OccupationJdbcDao();
-
+    private static final Logger logger = Logger.getLogger (OccupationServiceTest.class);
 
     @Test
-    public void testFindAllOccupations () {
+    public void testCreate () {
 
+        try {
 
-        this.occupationService.setOccupationDao (this.occupationDao);
+            //Insert new value
+            logger.info ("Starting occupation add test.");
+            IOccupationDao dao = new OccupationDaoJDBC ();
 
-        List<Occupation> list = this.occupationService.findAllOccupations ();
+            logger.debug ("Inserting new occupation.");
+            Occupation c = new Occupation ();
+            c.setName ("Run tester.");
+            c.setDescription ("xxxxxxxx");
+            dao.create (c);
 
-        Assert.assertFalse (list.isEmpty ());
+            logger.debug ("Checking test result.");
+            List<Occupation> list = dao.findAll ();
+
+            boolean r = Boolean.FALSE;
+
+            for (Occupation item : list) {
+
+                if (item.getName ().equals (c.getName ())) {
+                    r = Boolean.TRUE;
+                    break;
+                }
+            }
+
+            logger.info("Finishing the test...");
+            Assert.assertTrue(r);
+
+        } catch (Exception e) {
+
+            Assert.assertNull(e);
+        }
     }
 
     @Test
-    public void testAddOccupation () {
+    public void testDelete () {
 
+        try {
+            //Delete one register.
+            logger.info("Starting occupation delete test.");
+            IOccupationDao dao = new OccupationDaoJDBC();
 
-        this.occupationService.setOccupationDao (this.occupationDao);
+            Occupation o = dao.findById(21);
 
-        Occupation o = new Occupation ("1", "Catador de Ron", "Beber alcohol...");
+            logger.debug ("Deleting one occupation.");
+            dao.delete (o.getId());
 
-        List<Occupation> init = this.occupationDao.findAllOccupations ();
+            logger.debug ("Checking test result.");
+            List<Occupation> list = dao.findAll ();
 
-        this.occupationService.addOccupation (o);
+            boolean r = Boolean.TRUE;
 
-        List<Occupation> end = this.occupationDao.findAllOccupations ();
+            for (Occupation item : list) {
 
-        Assert.assertTrue (init.size()+1 == end.size());
+                if (item.getId () == 24) {
+                    r = Boolean.FALSE;
+                    break;
+                }
+            }
+
+            Assert.assertTrue(r);
+
+        } catch (Exception e) {
+
+            Assert.assertNull(e);
+        }
     }
 
     @Test
-    public void testFindByIdOccupation () {
+    public void testUpdate () {
 
-        this.occupationService.setOccupationDao (this.occupationDao);
+        try {
 
-        Occupation o = new Occupation ("1", "Desarrollador", "Desarrollador java");
+            //Update one occupation.
+            logger.info ("Starting occupation update test.");
+            IOccupationDao dao = new OccupationDaoJDBC ();
 
-        this.occupationService.addOccupation (o);
+            logger.debug ("Inserting new occupation.");
+            Occupation occupation = new Occupation ();
+            occupation.setId(1);
+            occupation.setName ("Run update tester.");
+            occupation.setDescription ("xxxxxxxx");
 
-        Occupation o1 = this.occupationService.findByIdOccupation("1");
+            dao.update (occupation);
 
-        Assert.assertTrue("Failed for findByID (assertTrue)", o.getId().equals(o1.getId()));
+            logger.debug ("Checking test result.");
+            List<Occupation> list = dao.findAll ();
 
-        Occupation o2 = this.occupationService.findByIdOccupation("40");
+            boolean r = Boolean.FALSE;
 
-        Assert.assertFalse("Failed for findByID (assertFalse)", o.getId().equals(o2.getId()));
+            for (Occupation item : list) {
+
+                if (item.getName ().equals (occupation.getName ())) {
+                    r = Boolean.TRUE;
+                    break;
+                }
+            }
+
+            logger.info("Finishing the test...");
+            Assert.assertTrue(r);
+
+        } catch (Exception e) {
+
+            Assert.assertNull(e);
+        }
     }
-
-    @Test
-    public void testUpdateOccupation () {
-
-        this.occupationService.setOccupationDao (this.occupationDao);
-
-        Occupation o = new Occupation ("1", "Desarrollador", "Desarrollador java");
-
-        this.occupationService.addOccupation(o);
-
-        this.occupationService.updateOccupation("1", "Catador de whisky", "Catador de whisky");
-
-        Assert.assertFalse("Failed asserTrue.......", o.getName().equals("Desarrollador"));
-    }
-
-    @Test
-    public void testRemoveByIdOccupation () {
-
-        this.occupationService.setOccupationDao (this.occupationDao);
-
-        Occupation o = new Occupation ("1", "Desarrollador", "Desarrollador java");
-        this.occupationService.addOccupation(o);
-
-        List<Occupation> init = occupationService.findAllOccupations();
-
-        this.occupationService.removeByIdOccupation("1");
-
-        List<Occupation> end = occupationService.findAllOccupations();
-
-        Assert.assertTrue(init.size()-1 == end.size());
-    }
-
-    @Test
-    public void testRemoveOccupation () {
-
-        this.occupationService.setOccupationDao (this.occupationDao);
-
-        Occupation o = new Occupation ("1", "Desarrollador", "Desarrollador java");
-        this.occupationService.addOccupation(o);
-
-        List<Occupation> init = occupationService.findAllOccupations();
-
-        this.occupationService.removeOccupation(o);
-
-        List<Occupation> end = occupationService.findAllOccupations();
-
-        Assert.assertTrue(init.size()-1 == end.size());
-    }
-
-    @Test
-    public void testFindAllOccupation () {
-
-        this.occupationService.setOccupationDao (this.occupationJdbcDao);
-
-        List<Occupation> list = this.occupationService.findAllOccupations();
-
-        Assert.assertFalse ("Failed findAllOccupation..", list.isEmpty ());
-
-        //Assert.assertTrue("Failed..", list.size()==1);
-    }
-
-    /*@Test
-    public void testAddOccupation () {
-
-        this.occupationService.setOccupationDao (this.occupationJdbcDao);
-
-        Occupation o = new Occupation ("1", "Catador de Ron", "Beber alcohol...");
-
-        this.occupationService.addOccupation();
-
-        Assert.assertTrue();
-    }*/
 }
