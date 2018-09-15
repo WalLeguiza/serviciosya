@@ -1,6 +1,8 @@
 package com.cagmeini.serviciosya.beans.entity;
 
 import javax.persistence.*;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity (name = "Occupation")
 @Table (name = "occupation")
@@ -20,6 +22,9 @@ public class OccupationEntity {
     @ManyToOne
     @JoinColumn (name = "parent")
     private OccupationEntity occupation;
+
+    @ManyToMany (mappedBy = "occupations")
+    private Set<ProviderEntity> providers = new HashSet<>();
 
     /**
      *

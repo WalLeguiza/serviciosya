@@ -15,7 +15,7 @@ public class CountryDaoHibernate implements ICountryDao {
 
     private SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory ();
 
-    private static final Logger logger= Logger.getLogger (CountryDaoHibernate.class);
+    private static final Logger logger = Logger.getLogger (CountryDaoHibernate.class);
 
     @Override
     public void create(CountryEntity target) {

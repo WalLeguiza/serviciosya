@@ -15,9 +15,11 @@
         <property name="format_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
 
-        <mapping class="com.cagmeini.serviciosya.beans.entity.CountryEntity" />
-        <mapping class="com.cagmeini.serviciosya.beans.entity.ProvinceEntity" />
         <mapping class="com.cagmeini.serviciosya.beans.entity.CityEntity" />
+        <mapping class="com.cagmeini.serviciosya.beans.entity.ProvinceEntity" />
+        <mapping class="com.cagmeini.serviciosya.beans.entity.CountryEntity" />
+        <mapping class="com.cagmeini.serviciosya.beans.entity.ProviderEntity" />
+        <mapping class="com.cagmeini.serviciosya.beans.entity.ConsumerEntity" />
         <mapping class="com.cagmeini.serviciosya.beans.entity.OccupationEntity" />
 
     </session-factory>
