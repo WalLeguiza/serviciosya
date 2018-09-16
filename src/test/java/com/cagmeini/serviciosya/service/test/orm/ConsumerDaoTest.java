@@ -6,6 +6,7 @@ import com.cagmeini.serviciosya.dao.IConsumerDao;
 import com.cagmeini.serviciosya.dao.orm.ConsumerDaoHibernate;
 import org.junit.Assert;
 import org.junit.Test;
+import org.postgresql.util.PGmoney;
 
 import java.util.List;
 

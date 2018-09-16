@@ -21,6 +21,7 @@
         <mapping class="com.cagmeini.serviciosya.beans.entity.ProviderEntity" />
         <mapping class="com.cagmeini.serviciosya.beans.entity.ConsumerEntity" />
         <mapping class="com.cagmeini.serviciosya.beans.entity.OccupationEntity" />
+        <mapping class="com.cagmeini.serviciosya.beans.entity.ContractEntity" />
 
     </session-factory>
 

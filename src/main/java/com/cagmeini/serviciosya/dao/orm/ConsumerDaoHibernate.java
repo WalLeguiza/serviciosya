@@ -70,6 +70,7 @@ public class ConsumerDaoHibernate implements IConsumerDao {
             throw new DaoException(e.getMessage(), e);
 
         } finally {
+
             session.close ();
         }
     }
