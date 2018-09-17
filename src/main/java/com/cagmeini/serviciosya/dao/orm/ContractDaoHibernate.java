@@ -12,9 +12,13 @@ import java.util.List;
 
 public class ContractDaoHibernate implements IContractDao {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory();
+    private static final Logger logger = Logger.getLogger (ContractDaoHibernate.class);
 
-    private static final Logger logger = Logger.getLogger(ConsumerDaoHibernate.class);
+    private SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void create (ContractEntity target) {

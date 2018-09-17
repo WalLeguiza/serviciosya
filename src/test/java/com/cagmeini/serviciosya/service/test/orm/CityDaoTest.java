@@ -8,20 +8,22 @@ import java.util.List;
 import com.cagmeini.serviciosya.beans.entity.CityEntity;
 import com.cagmeini.serviciosya.beans.entity.ProvinceEntity;
 import com.cagmeini.serviciosya.dao.ICityDao;
-import com.cagmeini.serviciosya.dao.orm.CityDaoHibernate;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CityDaoTest {
 
-    private ICityDao dao = new CityDaoHibernate ();
+    private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext ("applicationContext.xml");
+
+    private ICityDao dao = context.getBean (ICityDao.class);
 
     @Test
     public void testCreate () {
 
         ProvinceEntity p = new ProvinceEntity ();
-        p.setId (5);
+        p.setId (3);
 
         CityEntity c = new CityEntity ();
-        c.setName ("Posadas");
+        c.setName ("Florencio Varela");
         c.setProvince (p);
 
         this.dao.create (c);

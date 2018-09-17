@@ -23,9 +23,13 @@ import java.util.Set;
 
 public class ProviderDaoHibernate implements IProviderDao {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory();
+    private static final Logger logger = Logger.getLogger (ProviderDaoHibernate.class);
 
-    private static final Logger logger = Logger.getLogger(ProviderDaoHibernate.class);
+    private SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void create(ProviderEntity target) {

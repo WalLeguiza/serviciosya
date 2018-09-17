@@ -23,9 +23,13 @@ import java.util.Set;
 
 public class ConsumerDaoHibernate implements IConsumerDao {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory();
+    private static final Logger logger = Logger.getLogger (ConsumerDaoHibernate.class);
 
-    private static final Logger logger = Logger.getLogger(ConsumerDaoHibernate.class);
+    private SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void create(ConsumerEntity target) {

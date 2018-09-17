@@ -7,19 +7,22 @@ import org.junit.Test;
 import com.cagmeini.serviciosya.beans.entity.CountryEntity;
 import com.cagmeini.serviciosya.dao.ICountryDao;
 import com.cagmeini.serviciosya.dao.orm.CountryDaoHibernate;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
 
 public class CountryDaoTest {
 
-    private ICountryDao dao = new CountryDaoHibernate ();
+    private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext ("applicationContext.xml");
+
+    private ICountryDao dao = context.getBean (ICountryDao.class);
 
     @Test
     public void testCreate () {
 
         CountryEntity c = new CountryEntity ();
-        c.setName ("Uruguay");
+        c.setName ("Colombia");
 
         this.dao.create (c);
 
@@ -30,20 +33,20 @@ public class CountryDaoTest {
     public void testUpdate () {
 
         CountryEntity c = new CountryEntity ();
-        c.setId (4);
+        c.setId (10);
 
-        c.setName ("Venezuela");
+        c.setName ("Colombia");
 
         this.dao.update (c);
 
-        Assert.assertEquals ("Failure updating Country.", "Venezuela", c.getName ());
+        Assert.assertEquals ("Failure updating Country.", "Colombia", c.getName ());
     }
 
     @Test
     public void testDelete () {
 
-        int id = 2;
-        this.dao.delete (4);
+        int id = 10;
+        this.dao.delete (10);
 
         CountryEntity c = this.dao.findById (id);
 

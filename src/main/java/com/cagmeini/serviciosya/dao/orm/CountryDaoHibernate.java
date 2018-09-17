@@ -13,9 +13,13 @@ import java.util.List;
 
 public class CountryDaoHibernate implements ICountryDao {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory ();
-
     private static final Logger logger = Logger.getLogger (CountryDaoHibernate.class);
+
+    private SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void create(CountryEntity target) {

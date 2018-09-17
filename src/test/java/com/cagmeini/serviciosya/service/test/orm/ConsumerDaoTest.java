@@ -3,16 +3,18 @@ package com.cagmeini.serviciosya.service.test.orm;
 import com.cagmeini.serviciosya.beans.entity.CityEntity;
 import com.cagmeini.serviciosya.beans.entity.ConsumerEntity;
 import com.cagmeini.serviciosya.dao.IConsumerDao;
-import com.cagmeini.serviciosya.dao.orm.ConsumerDaoHibernate;
+
 import org.junit.Assert;
 import org.junit.Test;
-import org.postgresql.util.PGmoney;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
 public class ConsumerDaoTest {
 
-    private IConsumerDao dao = new ConsumerDaoHibernate();
+    private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext ("applicationContext.xml");
+
+    private IConsumerDao dao = context.getBean (IConsumerDao.class);
 
     @Test
     public void testCreate () {
@@ -22,11 +24,11 @@ public class ConsumerDaoTest {
         CityEntity city = new CityEntity();
         city.setId(1);
 
-        c.setName("Marge");
+        c.setName("Lisa");
         c.setLastName("Simpsons");
-        c.setDni(3321);
-        c.setEmail("marge@gmail.com");
-        c.setPhone("5543210");
+        c.setDni(9865);
+        c.setEmail("lisa.s@gmail.com");
+        c.setPhone("7898521");
         c.setAddress("Buenos Aires");
         c.setCity_id(city);
         c.setStatus(0);

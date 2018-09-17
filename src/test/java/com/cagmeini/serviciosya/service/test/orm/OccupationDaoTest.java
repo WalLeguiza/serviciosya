@@ -1,17 +1,21 @@
 package com.cagmeini.serviciosya.service.test.orm;
 
+import com.cagmeini.serviciosya.dao.ICountryDao;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.cagmeini.serviciosya.beans.entity.OccupationEntity;
 import com.cagmeini.serviciosya.dao.IOccupationDao;
 import com.cagmeini.serviciosya.dao.orm.OccupationDaoHibernate;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
 public class OccupationDaoTest {
 
-    IOccupationDao dao = new OccupationDaoHibernate ();
+    private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext ("applicationContext.xml");
+
+    private IOccupationDao dao = context.getBean (IOccupationDao.class);
 
     @Test
     public void testCreate () {
@@ -20,8 +24,8 @@ public class OccupationDaoTest {
         c.setId (25);
 
         OccupationEntity o = new OccupationEntity ();
-        o.setName ("Ingeniería Informática");
-        o.setDescription ("Profesión que consiste en la aplicación de los fundamentos de la ciencia de la computación.");
+        o.setName ("Ingeniería en Petroleo");
+        o.setDescription ("Profesión que consiste en la aplicación de los fundamentos del petroleo.");
         o.setOccupation(c);
 
         this.dao.create (o);

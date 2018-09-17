@@ -1,5 +1,6 @@
 package com.cagmeini.serviciosya.service.test.orm;
 
+import com.cagmeini.serviciosya.dao.ICountryDao;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,13 +8,15 @@ import com.cagmeini.serviciosya.beans.entity.ProvinceEntity;
 import com.cagmeini.serviciosya.beans.entity.CountryEntity;
 import com.cagmeini.serviciosya.dao.IProvinceDao;
 import com.cagmeini.serviciosya.dao.orm.ProvinceDaoHibernate;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
 public class ProvinceDaoTest {
 
-    private IProvinceDao dao = new ProvinceDaoHibernate ();
+    private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext ("applicationContext.xml");
 
+    private IProvinceDao dao = context.getBean (IProvinceDao.class);
 
     @Test
     public void testCreate () {
@@ -21,7 +24,7 @@ public class ProvinceDaoTest {
         ProvinceEntity p = new ProvinceEntity ();
         CountryEntity c = new CountryEntity ();
         c.setId (1);
-        p.setName ("Misiones");
+        p.setName ("Mendoza");
         p.setCountry (c);
 
         this.dao.create (p);

@@ -14,9 +14,13 @@ import org.hibernate.Transaction;
 
 public class ProvinceDaoHibernate implements IProvinceDao {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory ();
-
     private static final Logger logger= Logger.getLogger (ProvinceDaoHibernate.class);
+
+    private SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void create(ProvinceEntity target) {

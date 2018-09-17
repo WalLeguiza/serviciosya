@@ -14,9 +14,13 @@ import org.hibernate.Transaction;
 
 public class CityDaoHibernate implements ICityDao {
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory ();
+    private static final Logger logger = Logger.getLogger (CityDaoHibernate.class);
 
-    private static final Logger logger= Logger.getLogger (CityDaoHibernate.class);
+    private SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void create(CityEntity target) {
