@@ -18,7 +18,7 @@
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="com.cagmeini.serviciosya.beans.entity" />
+        <property name="packagesToScan" value="com.capgemini.serviciosya.beans.entity" />
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
@@ -32,31 +32,31 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="countryDao" class="com.cagmeini.serviciosya.dao.orm.CountryDaoHibernate">
+    <bean id="countryDao" class="com.capgemini.serviciosya.repository.orm.CountryDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="provinceDao" class="com.cagmeini.serviciosya.dao.orm.ProvinceDaoHibernate">
+    <bean id="provinceDao" class="com.capgemini.serviciosya.repository.orm.ProvinceDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="cityDao" class="com.cagmeini.serviciosya.dao.orm.CityDaoHibernate">
+    <bean id="cityDao" class="com.capgemini.serviciosya.repository.orm.CityDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="providerDao" class="com.cagmeini.serviciosya.dao.orm.ProviderDaoHibernate">
+    <bean id="providerDao" class="com.capgemini.serviciosya.repository.orm.ProviderDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="consumerDao" class="com.cagmeini.serviciosya.dao.orm.ConsumerDaoHibernate">
+    <bean id="consumerDao" class="com.capgemini.serviciosya.repository.orm.ConsumerDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="occupationDao" class="com.cagmeini.serviciosya.dao.orm.OccupationDaoHibernate">
+    <bean id="occupationDao" class="com.capgemini.serviciosya.repository.orm.OccupationDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="contractDao" class="com.cagmeini.serviciosya.dao.orm.ContractDaoHibernate">
+    <bean id="contractDao" class="com.capgemini.serviciosya.repository.orm.ContractDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 

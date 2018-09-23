@@ -11,16 +11,14 @@
        - POM setup.
        -->
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.capgemini</groupId>
-        <artifactId>serviciosya</artifactId>
-        <version>1.0.0</version>
-    </parent>
     <artifactId>api</artifactId>
     <name>api</name>
     <packaging>jar</packaging>
     <description>API Servicios Ya.</description>
 
+    <!--
+       - Developer information.
+       -->
     <developers>
         <developer>
             <id>raul.g.pena</id>
@@ -29,16 +27,44 @@
         </developer>
     </developers>
 
+    <!--
+       - Properties information.
+       -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>4.3.5.RELEASE</spring.version>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.3.RELEASE</version>
+    </parent>
+
+    <!--
+       - Setup dependency.
+       -->
     <dependencies>
 
+        <!--
+           - Test dependencies. (Thirds)
+           -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -63,18 +89,26 @@
             <scope>compile</scope>
         </dependency>
 
+        <!--
+           - Data Base dependencies. (Thirds)
+           -->
         <dependency>
-            <groupId>org.postgresql</groupId>
+            <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.4.1212</version>
-            <scope>compile</scope>
+            <version>8.4-702.jdbc4</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.3.11.Final</version>
-            <scope>compile</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
