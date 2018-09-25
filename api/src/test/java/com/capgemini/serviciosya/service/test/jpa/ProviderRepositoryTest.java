@@ -58,10 +58,10 @@ public class ProviderRepositoryTest {
 
         };
 
-        logger.debug ("Set occupation father");
+        logger.debug ("Set countries father");
         occupations[1].setOccupation (occupations[0]);
         occupations[2].setOccupation (occupations[0]);
-        logger.debug (String.format ("Object occupation created %s", Arrays.toString(occupations)));
+        logger.debug (String.format ("Object countries created %s", Arrays.toString(occupations)));
 
         logger.debug ("Saving occupations...");
         this.repositoryOccupation.save (Arrays.asList(occupations));
@@ -78,7 +78,7 @@ public class ProviderRepositoryTest {
         this.repositoryCity.save (city);
         logger.debug(String.format("City, province and country saved %s, %s, %s", city, province, country));
 
-        logger.debug("Setting set occupation...");
+        logger.debug("Setting set countries...");
         Set<OccupationEntity> occupationHomer = new HashSet<OccupationEntity>();
         occupationHomer.add (occupations[1]);
         occupationHomer.add (occupations[2]);

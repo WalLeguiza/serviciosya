@@ -11,6 +11,11 @@
        - POM setup.
        -->
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.capgemini</groupId>
+        <artifactId>serviciosya</artifactId>
+        <version>1.0.0</version>
+    </parent>
     <artifactId>api</artifactId>
     <name>api</name>
     <packaging>jar</packaging>
@@ -34,12 +39,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.5.RELEASE</spring.version>
     </properties>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.3.RELEASE</version>
-    </parent>
 
     <!--
        - Setup dependency.

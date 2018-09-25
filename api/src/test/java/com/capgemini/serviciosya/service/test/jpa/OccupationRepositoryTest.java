@@ -42,11 +42,11 @@ public class OccupationRepositoryTest {
                 new OccupationEntity (Integer.valueOf(3), "Ingeniería Electrónica", "Ingeniría Electrónica")
         };
 
-        logger.debug("Set occupation father");
+        logger.debug("Set countries father");
         occupations[1].setOccupation(occupations[0]);
         occupations[2].setOccupation(occupations[0]);
 
-        logger.debug (String.format("Object occupation created %s", Arrays.toString(occupations)));
+        logger.debug (String.format("Object countries created %s", Arrays.toString(occupations)));
 
         logger.debug("Saving occupations...");
         this.repository.save(Arrays.asList(occupations));
