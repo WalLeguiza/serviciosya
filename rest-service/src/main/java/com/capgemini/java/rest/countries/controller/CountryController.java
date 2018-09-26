@@ -18,16 +18,10 @@ public class CountryController {
         super ();
     }
 
-    @Autowired
-    public void setCountryRepository (ICountryRepository countryRepository) {
-
-        this.countryRepository = countryRepository;
-    }
-
     @RequestMapping (method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> get () {
 
         // Return the value.
-        return ResponseEntity.ok (this.countryRepository.findAll());
+        return ResponseEntity.ok (this.countryRepository.findAll ());
     }
 }
