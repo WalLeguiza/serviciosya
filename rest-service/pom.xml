@@ -105,6 +105,7 @@
             <version>9.4-1206-jdbc42</version>
         </dependency>
 
+
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
