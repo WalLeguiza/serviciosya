@@ -2,6 +2,15 @@ package com.capgemini.serviciosya.beans.entity;
 
 import javax.persistence.*;
 
+/**
+ *
+ *  <p>The class <code>com.capgemini.serviciosya.beans.entity.CityEntity<code/>
+ *  is a entity object for mapping the cities information of the data base.
+ *
+ *  @author Walter Leguiza (wal.leguiza@gmail.com)
+ *  @version 1.0.0
+ *  @since 1.8
+ * */
 @Entity (name = "City")
 @Table (name = "city")
 public class CityEntity {
@@ -34,6 +43,10 @@ public class CityEntity {
      *
      *
      * <p>Constructor with arguments
+     *
+     * @param id Id city.
+     * @param name Name city.
+     * @param province Province city.
      */
     public CityEntity(int id, String name, ProvinceEntity province) {
 

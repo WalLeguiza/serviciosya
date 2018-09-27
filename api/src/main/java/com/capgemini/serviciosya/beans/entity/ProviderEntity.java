@@ -18,6 +18,15 @@ import java.util.HashSet;
         )
 })
 
+/**
+ *
+ *  <p>The class <code>com.capgemini.serviciosya.beans.entity.ProviderEntity<code/>
+ *  is a entity object for mapping the providers information of the data base.
+ *
+ *  @author Walter Leguiza (wal.leguiza@gmail.com)
+ *  @version 1.0.0
+ *  @since 1.8
+ * */
 @Entity (name = "Provider")
 @Table (name = "provider")
 public class ProviderEntity {
@@ -74,6 +83,17 @@ public class ProviderEntity {
      *
      *
      * <p>Constructor with arguments
+     *
+     * @param id Id provider.
+     * @param name Name provider.
+     * @param lastName Last Name provider.
+     * @param phone Phone provider.
+     * @param dni DNI provider.
+     * @param email Email provider.
+     * @param address Address provider.
+     * @param status Status provider.
+     * @param city City provider.
+     * @param occupations Occupation provider.
      */
     public ProviderEntity(int id, String name, String lastName, String phone,
                           Integer dni, String email, String address, Integer status,

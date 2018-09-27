@@ -4,8 +4,17 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.HashSet;
 
+/**
+ *
+ *  <p>The class <code>com.capgemini.serviciosya.beans.domain.OccupationEntity<code/>
+ *  is a entity object for mapping the occupations information of the data base.
+ *
+ *  @author Walter Leguiza (wal.leguiza@gmail.com)
+ *  @version 1.0.0
+ *  @since 1.8
+ * */
 @Entity (name = "Occupation")
-@Table (name = "countries")
+@Table (name = "occupation")
 public class OccupationEntity {
 
     @Id
@@ -38,9 +47,12 @@ public class OccupationEntity {
 
     /**
      *
+     *  <p>Constructor with arguments.
      *
-     * <p>Constructor with arguments without occupations father
-     */
+     *  @param id Id occupation.
+     *  @param name Name occupation.
+     *  @param description Description occupation.
+     * */
     public OccupationEntity(int id, String name, String description) {
         this.id = id;
         this.name = name;
@@ -50,9 +62,13 @@ public class OccupationEntity {
 
     /**
      *
+     *  <p>Constructor with arguments.
      *
-     * <p>Constructor with arguments
-     */
+     *  @param id Id occupation.
+     *  @param name Name occupation.
+     *  @param description Description occupation.
+     *  @param occupation Parent occupation.
+     * */
     public OccupationEntity(int id, String name, String description, OccupationEntity occupation) {
         this.id = id;
         this.name = name;

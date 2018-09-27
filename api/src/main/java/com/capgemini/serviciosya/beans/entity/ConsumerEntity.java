@@ -5,6 +5,15 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 
+/**
+ *
+ *  <p>The class <code>com.capgemini.serviciosya.beans.entity.ConsumerEntity<code/>
+ *  is a entity object for mapping the consumers information of the data base.
+ *
+ *  @author Walter Leguiza (wal.leguiza@gmail.com)
+ *  @version 1.0.0
+ *  @since 1.8
+ * */
 @Entity (name = "Consumer")
 @Table (name = "consumer")
 public class ConsumerEntity {
@@ -54,7 +63,17 @@ public class ConsumerEntity {
     /**
      *
      *
-     * Constructor with arguments
+     * <p>Constructor with arguments
+     *
+     * @param id Id consumer.
+     * @param name Name consumer.
+     * @param lastName Last Name consumer.
+     * @param dni DNI consumer.
+     * @param email Email consumer.
+     * @param phone Phone consumer.
+     * @param city_id City consumer.
+     * @param address Address consumer.
+     * @param status Status consumer.
      */
     public ConsumerEntity(int id, String name, String lastName, Integer dni,
                           String email, String phone, CityEntity city_id,

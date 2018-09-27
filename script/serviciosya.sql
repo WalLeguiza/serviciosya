@@ -8,10 +8,6 @@ CREATE SEQUENCE public.occupation_seq
 ALTER SEQUENCE public.occupation_seq
     OWNER TO postgres;
 
--- Table: public.occupation
-
--- DROP TABLE public.occupation;
-
 CREATE TABLE public.occupation
 (
     id integer NOT NULL DEFAULT nextval('occupation_seq'::regclass),
@@ -34,6 +30,7 @@ ALTER TABLE public.occupation
 
 
 
+
 CREATE SEQUENCE public.country_seq
     INCREMENT 1
     START 1
@@ -44,9 +41,6 @@ CREATE SEQUENCE public.country_seq
 ALTER SEQUENCE public.country_seq
     OWNER TO postgres;
 
--- Table: public.country
-
--- DROP TABLE public.country;
 
 CREATE TABLE public.country
 (
@@ -64,6 +58,8 @@ ALTER TABLE public.country
 
 
 
+
+
 CREATE SEQUENCE public.province_seq
     INCREMENT 1
     START 1
@@ -74,9 +70,6 @@ CREATE SEQUENCE public.province_seq
 ALTER SEQUENCE public.province_seq
     OWNER TO postgres;
 
--- Table: public.province
-
--- DROP TABLE public.province;
 
 CREATE TABLE public.province
 (
@@ -99,6 +92,8 @@ ALTER TABLE public.province
 
 
 
+
+
 CREATE SEQUENCE public.city_seq
     INCREMENT 1
     START 1
@@ -109,9 +104,6 @@ CREATE SEQUENCE public.city_seq
 ALTER SEQUENCE public.city_seq
     OWNER TO postgres;
 
--- Table: public.city
-
--- DROP TABLE public.city;
 
 CREATE TABLE public.city
 (
@@ -133,6 +125,8 @@ ALTER TABLE public.city
     OWNER to postgres;
 
 
+
+
 CREATE SEQUENCE public.provider_seq
     INCREMENT 1
     START 1
@@ -143,9 +137,6 @@ CREATE SEQUENCE public.provider_seq
 ALTER SEQUENCE public.provider_seq
     OWNER TO postgres;
 
--- Table: public.provider
-
--- DROP TABLE public.provider;
 
 CREATE TABLE public.provider
 (
@@ -173,6 +164,8 @@ ALTER TABLE public.provider
 
 
 
+
+
 CREATE SEQUENCE public.occupation_x_provider_seq
     INCREMENT 1
     START 4
@@ -183,9 +176,6 @@ CREATE SEQUENCE public.occupation_x_provider_seq
 ALTER SEQUENCE public.occupation_x_provider_seq
     OWNER TO postgres;
 
--- Table: public.occupation_x_provider
-
--- DROP TABLE public.occupation_x_provider;
 
 CREATE TABLE public.occupation_x_provider
 (
@@ -222,9 +212,6 @@ CREATE SEQUENCE public.consumer_seq
 ALTER SEQUENCE public.consumer_seq
     OWNER TO postgres;
 
--- Table: public.consumer
-
--- DROP TABLE public.consumer;
 
 CREATE TABLE public.consumer
 (
@@ -257,6 +244,9 @@ TABLESPACE pg_default;
 ALTER TABLE public.consumer
     OWNER to postgres;
 
+
+
+
 CREATE SEQUENCE public.contract_seq
     INCREMENT 1
     START 4
@@ -273,8 +263,8 @@ CREATE TABLE public.contract
     id integer NOT NULL DEFAULT nextval('contract_seq'::regclass),
     provider_id integer NOT NULL,
     consumer_id integer NOT NULL,
-    date date NOT NULL,
     amount double precision NOT NULL,
+    date character varying(128) COLLATE pg_catalog."default",
     status integer NOT NULL,
     CONSTRAINT contract_pkey PRIMARY KEY (id),
     CONSTRAINT fk_contract_to_consumer_id FOREIGN KEY (consumer_id)

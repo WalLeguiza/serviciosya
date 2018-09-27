@@ -2,6 +2,15 @@ package com.capgemini.serviciosya.beans.entity;
 
 import javax.persistence.*;
 
+/**
+ *
+ *  <p>The class <code>com.capgemini.serviciosya.beans.entity.ProvinceEntity<code/>
+ *  is a entity object for mapping the provinces information of the data base.
+ *
+ *  @author Walter Leguiza (wal.leguiza@gmail.com)
+ *  @version 1.0.0
+ *  @since 1.8
+ * */
 @Entity (name = "Province")
 @Table (name = "province")
 public class ProvinceEntity {
@@ -32,6 +41,10 @@ public class ProvinceEntity {
      *
      *
      * <p>Constructor with arguments
+     *
+     * @param id Id province.
+     * @param name Name province.
+     * @param country Country province.
      */
     public ProvinceEntity(int id, String name, CountryEntity country) {
 

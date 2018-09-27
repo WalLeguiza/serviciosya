@@ -2,6 +2,15 @@ package com.capgemini.serviciosya.beans.domain;
 
 import java.util.Date;
 
+/**
+ *
+ *  <p>The class <code>com.capgemini.serviciosya.beans.domain.Person<code/>
+ *  is a domain abstract object for management the persons information.
+ *
+ *  @author Walter Leguiza (wal.leguiza@gmail.com)
+ *  @version 1.0.0
+ *  @since 1.8
+ * */
 public abstract class Person {
 
     // Private instances fields.
@@ -32,12 +41,8 @@ public abstract class Person {
 
     /**
      *
-     *  <p>The class <code>com.capgemini.serviciosya.beans.domain.Person<code/>
-     *  is a domain object abstract for management the persons information.
+     *  <p>Constructor without arguments.
      *
-     *  @author Walter Leguiza (wal.leguiza@gmail.com)
-     *  @version 1.0.0
-     *  @since 1.8
      * */
     public Person() {
 
@@ -58,6 +63,10 @@ public abstract class Person {
      *  @param address Address Person.
      * */
     public Person(String id, String name, String last_name, String dni, Date birthday, String email, String phone, Address address) {
+        // Call to super class.
+        super ();
+
+        // Set internal values.
         this.id = id;
         this.name = name;
         this.last_name = last_name;

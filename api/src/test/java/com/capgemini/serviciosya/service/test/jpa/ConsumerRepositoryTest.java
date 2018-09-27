@@ -78,7 +78,7 @@ public class ConsumerRepositoryTest {
     }
 
     @Test
-    public void testFindAllConsumer () {
+    public void testCountConsumer () {
         logger.info ("Counting countries...");
         long count = this.repositoryConsumer.count();
 
@@ -96,6 +96,7 @@ public class ConsumerRepositoryTest {
 
             System.out.println(e);
         }
+
         Assert.assertNotNull("There are consumers", list);
         Assert.assertFalse("There are consumers", list.isEmpty());
     }

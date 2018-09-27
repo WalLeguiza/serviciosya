@@ -2,6 +2,15 @@ package com.capgemini.serviciosya.beans.entity;
 
 import javax.persistence.*;
 
+/**
+ *
+ *  <p>The class <code>com.capgemini.serviciosya.beans.entity.CountryEntity<code/>
+ *  is a entity object for mapping the countries information of the data base.
+ *
+ *  @author Walter Leguiza (wal.leguiza@gmail.com)
+ *  @version 1.0.0
+ *  @since 1.8
+ * */
 @Entity (name = "Country")
 @Table (name = "country")
 public class CountryEntity {
@@ -20,8 +29,9 @@ public class CountryEntity {
      *
      * <p>Constructor without arguments
      */
-    public CountryEntity() {
+    public CountryEntity () {
 
+        // Call to super class.
         super ();
     }
 
@@ -29,10 +39,15 @@ public class CountryEntity {
      *
      *
      * <p>Constructor with arguments
+     *
+     * @param id Id country.
+     * @param name Name country.
      */
     public CountryEntity(int id, String name) {
-
+        // Call to super class.
         super ();
+
+        // Set internal values.
         this.id = id;
         this.name = name;
     }

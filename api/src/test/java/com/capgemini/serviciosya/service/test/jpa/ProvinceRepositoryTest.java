@@ -84,10 +84,10 @@ public class ProvinceRepositoryTest {
         List<ProvinceEntity> list = this.repositoryProvince.findAllByCountryOrderByName (c);
 
         for (ProvinceEntity p : list) {
-            System.out.println(p + " -> " + p.getCountry());
+            System.out.println(p);
         }
 
         Assert.assertNotNull ("There are provinces...", list);
-        Assert.assertFalse ("There are provinces...",list.isEmpty ());
+        Assert.assertFalse ("There are provinces...", list.isEmpty ());
     }
 }

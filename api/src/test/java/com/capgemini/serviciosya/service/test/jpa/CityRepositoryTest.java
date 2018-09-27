@@ -92,7 +92,7 @@ public class CityRepositoryTest {
         List<CityEntity> list = this.repositoryCity.findAllByProvinceOrderByName (p);
 
         for (CityEntity city : list) {
-            System.out.println(city.getName()+" -> "+city.getProvince().getName());
+            System.out.println(city);
         }
 
         Assert.assertNotNull ("There are cities...", list);
@@ -103,7 +103,7 @@ public class CityRepositoryTest {
     public void testGetByName () {
 
         logger.info ("Getting cities...");
-        String name = "Varela";
+        String name = "Florencio Varela";
         CityEntity city = this.repositoryCity.findByName (name);
 
         System.out.println(city);

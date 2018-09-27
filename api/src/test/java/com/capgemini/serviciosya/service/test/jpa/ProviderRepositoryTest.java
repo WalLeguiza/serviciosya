@@ -120,13 +120,13 @@ public class ProviderRepositoryTest {
     }
 
     @Test
-    public void testFindAllByCountry () {
+    public void testFindByEmail () {
 
         String email = "homer.simpsons@gmail.com";
 
-        ProviderEntity p = this.repositoryProvider.findByEmail(email);
+        ProviderEntity p = this.repositoryProvider.findByEmail (email);
 
-        System.out.println(p);
+        System.out.println (p);
 
         Assert.assertNotNull ("There are providers", p);
     }

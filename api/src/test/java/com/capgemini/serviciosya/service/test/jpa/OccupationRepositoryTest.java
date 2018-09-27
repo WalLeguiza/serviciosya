@@ -63,7 +63,7 @@ public class OccupationRepositoryTest {
 
         for (OccupationEntity c : list) {
 
-            System.out.println(c);
+            System.out.println (c);
         }
 
         Assert.assertNotNull("There are occupations...", list);
