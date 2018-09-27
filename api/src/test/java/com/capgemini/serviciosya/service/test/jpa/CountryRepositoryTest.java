@@ -52,7 +52,7 @@ public class CountryRepositoryTest {
         Long count = this.repository.count ();
 
         Assert.assertNotNull ("There are countries...", count);
-        Assert.assertTrue ("There are countries...",count > 0);
+        Assert.assertTrue ("There are countries...",count == 5);
     }
 
     @Test
