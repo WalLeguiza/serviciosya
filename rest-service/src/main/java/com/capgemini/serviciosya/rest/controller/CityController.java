@@ -1,7 +1,6 @@
 package com.capgemini.serviciosya.rest.controller;
 
 import com.capgemini.serviciosya.beans.entity.CityEntity;
-import com.capgemini.serviciosya.repository.ICityRepository;
 
 import com.capgemini.serviciosya.rest.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +81,7 @@ public class CityController {
     @ResponseBody
     public ResponseEntity<?> add (@RequestBody CityEntity city) {
 
-       return this.cityService.add(city);
+        return this.cityService.add(city);
     }
 
     /**
@@ -96,7 +95,7 @@ public class CityController {
     @ResponseBody
     public ResponseEntity<?> update (@RequestBody CityEntity city, @PathVariable ("id") int id) {
 
-       return this.cityService.update(city, id);
+        return this.cityService.update(city, id);
     }
 
     /**
