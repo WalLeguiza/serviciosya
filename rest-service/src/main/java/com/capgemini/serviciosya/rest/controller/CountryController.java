@@ -3,11 +3,16 @@ package com.capgemini.serviciosya.rest.controller;
 import com.capgemini.serviciosya.beans.entity.CountryEntity;
 import com.capgemini.serviciosya.repository.ICountryRepository;
 
+import com.capgemini.serviciosya.repository.IProvinceRepository;
+import com.capgemini.serviciosya.rest.client.CountryClient;
+import com.capgemini.serviciosya.rest.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +30,12 @@ public class CountryController {
 
     @Autowired
     private ICountryRepository countryRepository;
+
+    @Autowired
+    private IProvinceRepository provinceRepository;
+
+    @Autowired
+    private CountryService countryService;
 
     /**
      *
@@ -45,10 +56,9 @@ public class CountryController {
      *  @return Return the countries.
      * */
     @RequestMapping (method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> get () {
+    public ResponseEntity<?> getAll () {
 
-        // Return the value.
-        return ResponseEntity.ok (this.countryRepository.findAll());
+        return countryService.getAll();
     }
 
     /**
@@ -59,19 +69,33 @@ public class CountryController {
      *  @return Return a country by id.
      * */
     @RequestMapping (value = "/{id}", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> get (@PathVariable("id") Integer id) {
+    public ResponseEntity<CountryEntity> getId (@PathVariable("id") Integer id) {
 
+        return countryService.getId(id);
+    }
 
-        CountryEntity country = this.countryRepository.findOne (id);
+    @RequestMapping (value = "info/{name}", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getInfo (@PathVariable("name") String name) {
 
-        if (country == null) {
+        return countryService.getInfo(name);
+    }
 
-            return ResponseEntity.notFound().build();
+    @RequestMapping (value = "/between", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CountryEntity>> getBetweenId (@RequestParam ("id_min") Integer id_min, @RequestParam ("id_max") Integer id_max) {
 
-        } else {
+        return countryService.getBetweenId(id_min, id_max);
+    }
 
-            return ResponseEntity.ok (this.countryRepository.findOne (id));
-        }
+    @RequestMapping (value = "/greater", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CountryEntity>> getGreaterId (@RequestParam ("id_min") Integer id_min) {
+
+        return countryService.getGreaterId(id_min);
+    }
+
+    @RequestMapping (value = "/lesser", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CountryEntity>> getLesserId (@RequestParam ("id_max") Integer id_max) {
+
+        return countryService.getLesserId(id_max);
     }
 
     /**
@@ -83,21 +107,9 @@ public class CountryController {
     @RequestMapping (method = RequestMethod.POST, consumes={MediaType.APPLICATION_JSON_VALUE},
             produces={MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public ResponseEntity<?> save (@RequestBody Map<String, Object> data) {
+    public ResponseEntity<?> add (@RequestBody CountryEntity country) {
 
-        try {
-
-            CountryEntity country = new CountryEntity();
-            country.setName ((String)data.get ("name"));
-
-            this.countryRepository.save (country);
-
-        } catch (Exception e) {
-
-            return ResponseEntity.badRequest ().build ();
-        }
-
-        return ResponseEntity.noContent().build ();
+        return countryService.add(country);
     }
 
     /**
@@ -109,22 +121,9 @@ public class CountryController {
     @RequestMapping (value="/{id}", method = RequestMethod.PUT, consumes={MediaType.APPLICATION_JSON_VALUE},
             produces={MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public ResponseEntity<?> save (@RequestBody Map<String, Object> data, @PathVariable ("id") int id) {
+    public ResponseEntity<?> update (@RequestBody CountryEntity country, @PathVariable ("id") int id) {
 
-        try {
-
-            CountryEntity country = new CountryEntity();
-            country.setId (id);
-            country.setName ((String)data.get ("name"));
-
-            this.countryRepository.save (country);
-
-        } catch (Exception e) {
-
-            return ResponseEntity.unprocessableEntity().build ();
-        }
-
-        return ResponseEntity.noContent().build ();
+        return countryService.update(country, id);
     }
 
     /**
@@ -136,8 +135,10 @@ public class CountryController {
     @RequestMapping (value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete (@PathVariable ("id") int id) {
 
-        this.countryRepository.delete (id);
+        return countryService.delete(id);
 
-        return ResponseEntity.noContent ().build ();
     }
+
+
+
 }

@@ -1,9 +1,12 @@
 package com.capgemini.serviciosya.rest.controller;
 
 import com.capgemini.serviciosya.beans.entity.ProvinceEntity;
+import com.capgemini.serviciosya.repository.ICityRepository;
 import com.capgemini.serviciosya.repository.IProvinceRepository;
 
+import com.capgemini.serviciosya.rest.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +27,12 @@ public class ProvinceController {
     @Autowired
     private IProvinceRepository provinceRepository;
 
+    @Autowired
+    private ICityRepository cityRepository;
+
+    @Autowired
+    private ProvinceService provinceService;
+
     /**
      *
      *
@@ -43,10 +52,10 @@ public class ProvinceController {
      *  @return Return the provinces.
      * */
     @RequestMapping (method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> get () {
+    public ResponseEntity<?> getAll () {
 
         // Return the value.
-        return ResponseEntity.ok (this.provinceRepository.findAll());
+        return this.provinceService.getAll();
     }
 
     /**
@@ -57,19 +66,15 @@ public class ProvinceController {
      *  @return Return a province by id.
      * */
     @RequestMapping (value = "/{id}", method = RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> get (@PathVariable("id") Integer id) {
+    public ResponseEntity<?> getId (@PathVariable("id") Integer id) {
 
+        return provinceService.getId(id);
+    }
 
-        ProvinceEntity province = this.provinceRepository.findOne (id);
+    @RequestMapping (value = "/country/{nameCountry}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getAllByCountry (@PathVariable("nameCountry") String nameCountry) {
 
-        if (province == null) {
-
-            return ResponseEntity.notFound().build();
-
-        } else {
-
-            return ResponseEntity.ok (this.provinceRepository.findOne (id));
-        }
+        return provinceService.getAllByCountry(nameCountry);
     }
 
     /**
@@ -83,20 +88,7 @@ public class ProvinceController {
     @ResponseBody
     public ResponseEntity<?> add (@RequestBody ProvinceEntity province) {
 
-        try {
-
-            ProvinceEntity p = new ProvinceEntity();
-            p.setName (province.getName ());
-            p.setCountry (province.getCountry ());
-
-            this.provinceRepository.save (p);
-
-        } catch (Exception e) {
-
-            return ResponseEntity.badRequest ().build ();
-        }
-
-        return ResponseEntity.noContent ().build ();
+        return provinceService.add(province);
     }
 
     /**
@@ -110,21 +102,7 @@ public class ProvinceController {
     @ResponseBody
     public ResponseEntity<?> update (@RequestBody ProvinceEntity province, @PathVariable ("id") int id) {
 
-        try {
-
-            ProvinceEntity p = new ProvinceEntity ();
-            p.setId (id);
-            p.setName (province.getName ());
-            province.setCountry (province.getCountry ());
-
-            this.provinceRepository.save (province);
-
-        } catch (Exception e) {
-
-            return ResponseEntity.unprocessableEntity ().build ();
-        }
-
-        return ResponseEntity.noContent().build ();
+        return provinceService.update(province, id);
     }
 
     /**
@@ -136,8 +114,6 @@ public class ProvinceController {
     @RequestMapping (value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete (@PathVariable ("id") int id) {
 
-        this.provinceRepository.delete(id);
-
-        return ResponseEntity.noContent ().build ();
+        return provinceService.delete(id);
     }
 }

@@ -25,5 +25,7 @@ public interface IProvinceRepository extends JpaRepository <ProvinceEntity, Inte
      *
      *  @return Return the province list.
      * */
-    List<ProvinceEntity> findAllByCountryOrderByName (CountryEntity country);
+    List<ProvinceEntity> findAllByCountry (CountryEntity country);
+
+    ProvinceEntity findByName (String name);
 }

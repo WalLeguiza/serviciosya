@@ -89,7 +89,7 @@ public class CityRepositoryTest {
         ProvinceEntity p = new ProvinceEntity ();
         p.setId (Integer.valueOf (2));
 
-        List<CityEntity> list = this.repositoryCity.findAllByProvinceOrderByName (p);
+        List<CityEntity> list = this.repositoryCity.findAllByProvince (p);
 
         for (CityEntity city : list) {
             System.out.println(city);

@@ -3,6 +3,7 @@ package com.capgemini.serviciosya.rest.controller;
 import com.capgemini.serviciosya.beans.entity.CityEntity;
 import com.capgemini.serviciosya.repository.ICityRepository;
 
+import com.capgemini.serviciosya.rest.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class CityController {
 
     // CityController city repository.
     @Autowired
-    private ICityRepository cityRepository;
+    private CityService cityService;
 
     /**
      *
@@ -47,7 +48,7 @@ public class CityController {
     public ResponseEntity<?> get () {
 
         // Return the value.
-        return ResponseEntity.ok (this.cityRepository.findAll ());
+        return this.cityService.getAll();
     }
 
     /**
@@ -61,16 +62,13 @@ public class CityController {
     public ResponseEntity<?> get (@PathVariable("id") Integer id) {
 
 
-        CityEntity city = this.cityRepository.findOne (id);
+        return this.cityService.getId(id);
+    }
 
-        if (city == null) {
+    @RequestMapping (value = "/province/{nameProvince}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getAllByProvince (@PathVariable("nameProvince") String nameProvince) {
 
-            return ResponseEntity.notFound().build();
-
-        } else {
-
-            return ResponseEntity.ok (this.cityRepository.findOne (id));
-        }
+        return this.cityService.getAllByProvince(nameProvince);
     }
 
     /**
@@ -84,20 +82,7 @@ public class CityController {
     @ResponseBody
     public ResponseEntity<?> add (@RequestBody CityEntity city) {
 
-        try {
-
-            CityEntity c = new CityEntity();
-            c.setName (city.getName ());
-            c.setProvince (city.getProvince ());
-
-            this.cityRepository.save (c);
-
-        } catch (Exception e) {
-
-            return ResponseEntity.badRequest ().build ();
-        }
-
-        return ResponseEntity.noContent ().build ();
+       return this.cityService.add(city);
     }
 
     /**
@@ -111,21 +96,7 @@ public class CityController {
     @ResponseBody
     public ResponseEntity<?> update (@RequestBody CityEntity city, @PathVariable ("id") int id) {
 
-        try {
-
-            CityEntity c = new CityEntity ();
-            c.setId (id);
-            c.setName (city.getName ());
-            city.setProvince (city.getProvince ());
-
-            this.cityRepository.save (c);
-
-        } catch (Exception e) {
-
-            return ResponseEntity.unprocessableEntity ().build ();
-        }
-
-        return ResponseEntity.noContent().build ();
+       return this.cityService.update(city, id);
     }
 
     /**
@@ -137,8 +108,6 @@ public class CityController {
     @RequestMapping (value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete (@PathVariable ("id") int id) {
 
-        this.cityRepository.delete(id);
-
-        return ResponseEntity.noContent ().build ();
+        return this.cityService.delete(id);
     }
 }

@@ -81,7 +81,7 @@ public class ProvinceRepositoryTest {
         CountryEntity c = new CountryEntity ();
         c.setId (Integer.valueOf (1));
 
-        List<ProvinceEntity> list = this.repositoryProvince.findAllByCountryOrderByName (c);
+        List<ProvinceEntity> list = this.repositoryProvince.findAllByCountry (c);
 
         for (ProvinceEntity p : list) {
             System.out.println(p);

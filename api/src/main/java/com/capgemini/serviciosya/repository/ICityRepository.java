@@ -25,7 +25,7 @@ public interface ICityRepository extends JpaRepository<CityEntity, Integer> {
      *
      *  @return Return the provider list.
      * */
-    List<CityEntity> findAllByProvinceOrderByName (ProvinceEntity province);
+    List<CityEntity> findAllByProvince (ProvinceEntity province);
 
     /**
      *
